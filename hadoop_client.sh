@@ -36,3 +36,10 @@ sudo cat <<EOF > /etc/hadoop/mapred-site.xml
 </configuration>
 EOF
 
+sudo wget -c https://archive.apache.org/dist/hive/hive-0.13.1/apache-hive-0.13.1-bin.tar.gz
+sudo tar -xvf apache-hive-0.13.1-bin.tar.gz -C /opt/
+
+cat <<EOF >> .bashrc
+export PATH=/opt/apache-hive-0.13.1-bin/bin/:\$PATH
+export HIVE_HOME=/opt/apache-hive-0.13.1-bin/
+EOF

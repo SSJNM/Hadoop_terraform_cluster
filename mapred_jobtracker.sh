@@ -10,6 +10,7 @@ sudo rpm -i --force hadoop-1.2.1-1.x86_64.rpm
 sudo rm -rf /nn
 sudo mkdir /nn
 
+
 sudo chmod 677 /etc/hadoop/mapred-site.xml
 sudo cat <<EOF > /etc/hadoop/mapred-site.xml
 <?xml version="1.0"?>
@@ -22,6 +23,21 @@ sudo cat <<EOF > /etc/hadoop/mapred-site.xml
 </property>
 </configuration>
 EOF
+
+sudo chmod 677 /etc/hadoop/core-site.xml
+sudo cat <<EOF > /etc/hadoop/core-site.xml
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<configuration>
+<property>
+<name>fs.default.name</name>
+<value>hdfs://${namenode_ip}:9001</value>
+</property>
+</configuration>
+EOF
+
+
 
 if pidof /usr/java/default/bin/java
 then sudo kill `pidof /usr/java/default/bin/java`
