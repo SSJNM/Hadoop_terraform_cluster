@@ -82,6 +82,9 @@ data "template_file" "hdfs_slave" {
 
 data "template_file" "mapred_jobtracker" {
   template = "${file("${path.cwd}/mapred_jobtracker.sh")}"
+  vars     = {
+    namenode_ip = "${aws_instance.hdfs_master.private_ip}"
+  }
 }
 
 
